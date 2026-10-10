@@ -11,8 +11,10 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+]
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -87,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'swapnobari.wsgi.application'
+WSGI_APPLICATION = 'swapnobari.wsgi.app'
 
 
 # Database
@@ -101,27 +103,27 @@ WSGI_APPLICATION = 'swapnobari.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': config('user'),
-#         'PASSWORD': config('DB_password'),
-#         'HOST': config('host'),
-#         'PORT': config('port')
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': 'postgres',
+        'USER': config('user'),
+        'PASSWORD': config('DB_password'),
+        'HOST': config('host'),
+        'PORT': config('port')
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST'),
+#         'PORT': config('DB_PORT'),
+#     }
+# }
 
 # config cloudinary
 CLOUDINARY_STORAGE = {
@@ -225,11 +227,11 @@ SIMPLE_JWT = {
 }
 
 DJOSER = {
-    # 'EMAIL_FRONTEND_PROTOCOL': os.getenv("EMAIL_FRONTEND_PROTOCOL", "").split(","),
-    # 'EMAIL_FRONTEND_DOMAIN': os.getenv("EMAIL_FRONTEND_DOMAIN", "").split(","),
-    # 'EMAIL_FRONTEND_SITE_NAME': 'swapnobarihousingltd.com',
-    # 'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-    # 'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'EMAIL_FRONTEND_PROTOCOL': os.getenv("EMAIL_FRONTEND_PROTOCOL", "").split(","),
+    'EMAIL_FRONTEND_DOMAIN': os.getenv("EMAIL_FRONTEND_DOMAIN", "").split(","),
+    'EMAIL_FRONTEND_SITE_NAME': 'swapnobarihousingltd.com',
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
         'user_create': 'users.serializers.UserCreateSerializer',
@@ -255,19 +257,19 @@ SWAGGER_SETTINGS = {
 # https://docs.d
 # jangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}
+# MAILERS = {
+#     'default': {
+#         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
+#     },
+# }
 
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
-# EMAIL_PORT = config('EMAIL_PORT', cast=int)
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # BACKEND_URL = config('BACKEND_URL') 
 # FRONTEND_URL = config('FRONTEND_URL')
