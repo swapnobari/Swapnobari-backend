@@ -112,7 +112,7 @@ six==1.17.0
 
 social-auth-app-django==5.4.3
 
-social-auth-core==5.2.0
+social-auth-core==4.8.1
 
 sqlparse==0.6.0
 
