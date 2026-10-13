@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "home",
     "footer",
     "debug_toolbar",  
-    # "cloudinary_storage",
+    "cloudinary_storage",
 ]
 
 MIDDLEWARE = [
