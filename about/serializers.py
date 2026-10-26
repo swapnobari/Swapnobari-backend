@@ -104,3 +104,5 @@ class FoundersMessageSerializer(serializers.ModelSerializer):
     def validate_message(self, value):
         return sanitize_html(value)
  
+ 
+ 

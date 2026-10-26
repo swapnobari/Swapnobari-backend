@@ -19,7 +19,7 @@ class MultipartParserMixin:
     Form parsers only (no JSON) so drf-yasg shows real file inputs in Swagger.
     """
  
-    parser_classes = [MultiPartParser, FormParser]
+    parser_classes = [MultiPartParser, FormParser, JSONParser,]
  
  
 class VisibilityMixin:
