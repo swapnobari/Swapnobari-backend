@@ -13,12 +13,11 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    ".vercel.app",
     "localhost",
     "127.0.0.1",
+    ".vercel.app",
     "api.swapnobarihousingltd.com",
 ]
-
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -56,7 +55,7 @@ INSTALLED_APPS = [
     "testimonials",
     "users",
     "home",
-    "footer",
+    "footer", 
     "cloudinary_storage",
 ]
 
@@ -197,7 +196,7 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
@@ -258,21 +257,6 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
 
-
-# Email
-# https://docs.d
-# jangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
-# MAILERS = {
-#     'default': {
-#         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-#     },
-# }
-
-# HTTPS settings — only after HTTPS is working
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
