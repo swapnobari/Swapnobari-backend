@@ -13,6 +13,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
+    ".vercel.app",
     "localhost",
     "127.0.0.1",
     "api.swapnobarihousingltd.com",
@@ -94,7 +95,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'swapnobari.wsgi.application'
+WSGI_APPLICATION = 'swapnobari.wsgi.app'
 
 
 # Database
