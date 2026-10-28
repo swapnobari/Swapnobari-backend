@@ -7,15 +7,15 @@ import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = config("DEBUG", default=False, cast=bool)
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "api.swapnobarihousingltd.com",
     "localhost",
     "127.0.0.1",
+    "api.swapnobarihousingltd.com",
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "users",
     "home",
     "footer",
-    "debug_toolbar",  
     "cloudinary_storage",
 ]
 
@@ -70,7 +69,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -96,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'swapnobari.wsgi.app'
+WSGI_APPLICATION = 'swapnobari.wsgi.application'
 
 
 # Database
@@ -198,7 +196,7 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
@@ -271,9 +269,9 @@ SWAGGER_SETTINGS = {
 # }
 
 # HTTPS settings — only after HTTPS is working
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
