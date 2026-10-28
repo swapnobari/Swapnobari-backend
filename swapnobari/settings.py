@@ -7,16 +7,17 @@ import cloudinary
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    ".vercel.app",
+    "api.swapnobarihousingltd.com",
     "localhost",
     "127.0.0.1",
 ]
+
 AUTH_USER_MODEL = 'users.User'
 
 
@@ -72,7 +73,11 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", 
+    "https://swapnobarihousingltd.com",
+    "https://www.swapnobarihousingltd.com",
+]
 
 ROOT_URLCONF = 'swapnobari.urls'
 
@@ -97,13 +102,6 @@ WSGI_APPLICATION = 'swapnobari.wsgi.app'
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -228,8 +226,8 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     'UPDATE_LAST_LOGIN': True,
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
@@ -272,6 +270,11 @@ SWAGGER_SETTINGS = {
 #     },
 # }
 
+# HTTPS settings — only after HTTPS is working
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')
@@ -280,5 +283,5 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-# BACKEND_URL = config('BACKEND_URL') 
-# FRONTEND_URL = config('FRONTEND_URL')
+BACKEND_URL = config('BACKEND_URL') 
+FRONTEND_URL = config('FRONTEND_URL')
